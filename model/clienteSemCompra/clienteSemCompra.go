@@ -2,6 +2,7 @@ package clienteSemCompra
 
 import (
 	"etlProject/database"
+	"etlProject/file"
 	"etlProject/model/dadoBruto"
 	"etlProject/sanitize"
 	"etlProject/utils"
@@ -12,7 +13,7 @@ import (
 
 // Cria um arquivo temporário e envia para ser copiado para o banco
 func Create(dadosBrutos []dadoBruto.Model) {
-	tmpFile, err := ioutil.TempFile("/tmp/", "etlProject-sem_compra-")
+	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-sem_compra-")
 	utils.CheckErr(err)
 
 	defer os.Remove(tmpFile.Name())
@@ -20,7 +21,7 @@ func Create(dadosBrutos []dadoBruto.Model) {
 	fmt.Println("Arquivo temporário criado: " + tmpFile.Name())
 
 	for _, dado := range dadosBrutos {
-		sanitize.CleanNumeric(&dadoBruto.Cpf)
+		sanitize.CleanNumeric(&dado.Cpf)
 
 		text := []byte(
 			dado.Cpf + ";" +

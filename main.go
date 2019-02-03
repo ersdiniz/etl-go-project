@@ -21,7 +21,7 @@ func main() {
 
 	startLog(2)
 	// Extrai os dados do arquivo linha a linha
-	extracted := file.Read()
+	extracted := file.ReadSourceFile()
 
 	// Copia os dados extraídos para o banco
 	dadoBruto.Create(extracted)

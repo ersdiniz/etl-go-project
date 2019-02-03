@@ -2,6 +2,7 @@ package dadoBruto
 
 import (
 	"etlProject/database"
+	"etlProject/file"
 	"etlProject/utils"
 	"fmt"
 	"io/ioutil"
@@ -22,7 +23,7 @@ type Model struct {
 
 // Cria um arquivo temporário e envia para ser copiado para o banco
 func Create(lines []string) {
-	tmpFile, err := ioutil.TempFile("/tmp/", "etlProject-")
+	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-")
 	utils.CheckErr(err)
 
 	defer os.Remove(tmpFile.Name())

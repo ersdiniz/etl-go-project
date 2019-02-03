@@ -2,6 +2,7 @@ package clienteInconsistente
 
 import (
 	"etlProject/database"
+	"etlProject/file"
 	"etlProject/model/dadoBruto"
 	"etlProject/utils"
 	"fmt"
@@ -11,7 +12,7 @@ import (
 
 // Cria um arquivo temporário e envia para ser copiado para o banco
 func Create(dadosBrutos []dadoBruto.Model) {
-	tmpFile, err := ioutil.TempFile("/tmp/", "etlProject-inconsistentes-")
+	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-inconsistentes-")
 	utils.CheckErr(err)
 
 	defer os.Remove(tmpFile.Name())

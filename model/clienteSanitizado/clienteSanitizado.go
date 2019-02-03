@@ -2,6 +2,7 @@ package clienteSanitizado
 
 import (
 	"etlProject/database"
+	"etlProject/file"
 	"etlProject/model/dadoBruto"
 	"etlProject/sanitize"
 	"etlProject/utils"
@@ -12,7 +13,7 @@ import (
 
 // Cria um arquivo temporário e envia para ser copiado para o banco
 func Create(dadosBrutos []dadoBruto.Model) {
-	tmpFile, err := ioutil.TempFile("/tmp/", "etlProject-sanitizados-")
+	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-sanitizados-")
 	utils.CheckErr(err)
 
 	defer os.Remove(tmpFile.Name())

@@ -16,7 +16,7 @@ const (
 // Em casos reais, este caminho fixo não é aplicável, já que a origem dos
 // dados poderia ser de várias formas, mas dificilmente seria de um arquivo
 // anexado ao código fonte da aplicação
-func Read() []string {
+func ReadSourceFile() []string {
 	archive, err := os.Open(PATH + FILE)
 	utils.CheckErr(err)
 	defer archive.Close()
@@ -36,4 +36,11 @@ func Read() []string {
 	}
 
 	return lines
+}
+
+func CreateFolderIfNotExists(path string) string {
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		os.Mkdir(path, os.ModeDir)
+	}
+	return path
 }
