@@ -44,3 +44,5 @@ senha: **postgres**
 `go run main.go`
 
 Ao rodar o projeto, todas as tabelas utilizadas são criadas/recriadas.
+
+O resultado da execução pode ser vista pelo log do console e nas tabelas que foram criadas. Todo o processo leva entre 10 e 15 segundos para ser executado. São extraídos, analisados, sanitizados e persistidos quase 50 mil itens.
