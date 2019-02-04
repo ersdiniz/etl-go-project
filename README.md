@@ -17,6 +17,12 @@ A tranformação ou higienização dos dados pode ser para filtrar dados não ne
 Os dados transformados são persistidos, geralmente em um banco de dados, mas também pode criar arquivos ou enviar os dados para outros sistemas. Neste projeto, os dados préviamente separados são persistidos em 3 tabelas distintas do Postgres.
 
 
+**Versões:**
+
+Go 1.11.5<br>
+Postgres 10.6
+
+
 Para rodar o projeto, apenas dois passos são necessários:
 
 1 - Criar o database (apenas caso ainda não exista):
