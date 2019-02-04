@@ -23,7 +23,9 @@ Go 1.11.5<br>
 Postgres 10.6
 
 
-Para rodar o projeto, apenas dois passos são necessários:
+**Rodando o projeto:**
+
+Como as tabelas necessárias são criadas em tempo de execução, para rodar o projeto, apenas dois passos são necessários:
 
 1 - Criar o database (apenas caso ainda não exista):
 
