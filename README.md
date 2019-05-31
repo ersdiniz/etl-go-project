@@ -20,7 +20,7 @@ Os dados transformados são persistidos, geralmente em um banco de dados, mas ta
 **Versões:**
 
 Go 1.11.5<br>
-Postgres 10.6
+Postgres 10.8
 
 
 **Rodando o projeto:**

@@ -1,14 +1,14 @@
 package main
 
 import (
-	"etlProject/database"
-	"etlProject/file"
-	"etlProject/model/clienteInconsistente"
-	"etlProject/model/clienteSanitizado"
-	"etlProject/model/clienteSemCompra"
-	"etlProject/model/dadoBruto"
-	"etlProject/utils"
-	"etlProject/validator"
+	"etl-go-project/database"
+	"etl-go-project/file"
+	"etl-go-project/model/clienteInconsistente"
+	"etl-go-project/model/clienteSanitizado"
+	"etl-go-project/model/clienteSemCompra"
+	"etl-go-project/model/dadoBruto"
+	"etl-go-project/utils"
+	"etl-go-project/validator"
 	"fmt"
 	"strconv"
 )

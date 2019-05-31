@@ -2,7 +2,7 @@ package file
 
 import (
 	"bufio"
-	"etlProject/utils"
+	"etl-go-project/utils"
 	"os"
 )
 
@@ -38,9 +38,9 @@ func ReadSourceFile() []string {
 	return lines
 }
 
-func CreateFolderIfNotExists(path string) string {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
-		os.Mkdir(path, os.ModeDir)
+func CreateFolderIfNotExists(caminho string) string {
+	if _, err := os.Stat(caminho); os.IsNotExist(err) {
+		os.Mkdir(caminho, os.ModeDir)
 	}
-	return path
+	return caminho
 }

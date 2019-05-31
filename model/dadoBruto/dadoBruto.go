@@ -1,9 +1,9 @@
 package dadoBruto
 
 import (
-	"etlProject/database"
-	"etlProject/file"
-	"etlProject/utils"
+	"etl-go-project/database"
+	"etl-go-project/file"
+	"etl-go-project/utils"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -21,7 +21,7 @@ type Model struct {
 	LojaUltimaCompra   string
 }
 
-// Cria um arquivo temporário e envia para ser copiado para o banco
+// Cria um arquivo temporário e envia para ser inserido no banco
 func Create(lines []string) {
 	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-")
 	utils.CheckErr(err)
@@ -31,14 +31,14 @@ func Create(lines []string) {
 	fmt.Println("Arquivo temporário criado: " + tmpFile.Name())
 
 	for _, line := range lines {
-		lineArray := strings.Fields(line)
-		text := []byte(strings.Join(lineArray, ";") + "\n")
+		lineArray := strings.Fields("'" + line + "'")
+		text := []byte(strings.Join(lineArray, "','") + "\n")
 		tmpFile.Write(text)
 	}
 
 	tmpFile.Close()
 
-	database.Copy("dados_brutos", "cpf,private,incompleto,dt_ultima_compra,ticket_medio,ticket_ultima_compra,loja_mais_frequente,loja_ultima_compra", tmpFile.Name())
+	database.Insert("dados_brutos", "cpf,private,incompleto,dt_ultima_compra,ticket_medio,ticket_ultima_compra,loja_mais_frequente,loja_ultima_compra", tmpFile.Name())
 }
 
 func SelectAll() []Model {

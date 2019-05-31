@@ -1,17 +1,17 @@
 package clienteSemCompra
 
 import (
-	"etlProject/database"
-	"etlProject/file"
-	"etlProject/model/dadoBruto"
-	"etlProject/sanitize"
-	"etlProject/utils"
+	"etl-go-project/database"
+	"etl-go-project/file"
+	"etl-go-project/model/dadoBruto"
+	"etl-go-project/sanitize"
+	"etl-go-project/utils"
 	"fmt"
 	"io/ioutil"
 	"os"
 )
 
-// Cria um arquivo temporário e envia para ser copiado para o banco
+// Cria um arquivo temporário e envia para ser inserido no banco
 func Create(dadosBrutos []dadoBruto.Model) {
 	tmpFile, err := ioutil.TempFile(file.CreateFolderIfNotExists("/tmp/"), "etlProject-sem_compra-")
 	utils.CheckErr(err)
@@ -24,13 +24,13 @@ func Create(dadosBrutos []dadoBruto.Model) {
 		sanitize.CleanNumeric(&dado.Cpf)
 
 		text := []byte(
-			dado.Cpf + ";" +
-				dado.Private + ";" +
-				dado.Incompleto + "\n")
+			"'" + dado.Cpf + "','" +
+				dado.Private + "','" +
+				dado.Incompleto + "'\n")
 		tmpFile.Write(text)
 	}
 
 	tmpFile.Close()
 
-	database.Copy("clientes_sem_compras", "cpf,private,incompleto", tmpFile.Name())
+	database.Insert("clientes_sem_compras", "cpf,private,incompleto", tmpFile.Name())
 }

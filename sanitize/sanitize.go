@@ -1,7 +1,7 @@
 package sanitize
 
 import (
-	"etlProject/utils"
+	"etl-go-project/utils"
 	"regexp"
 )
 
